@@ -15,7 +15,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 COPY requirements.txt requirements.txt
 
 # Create virtual environment and install dependencies
-RUN uv venv --python '>=3.11' /default_python_venv && \
+RUN uv venv --python '>=3.12' /default_python_venv && \
     . /default_python_venv/bin/activate && \
     uv pip install -r requirements.txt
 

@@ -1,7 +1,7 @@
+pip
 ruff
 pytest
-databricks-connect
+databricks-connect # ==13.3.5
 pandas
 dbt-core
 dbt-databricks
-pip

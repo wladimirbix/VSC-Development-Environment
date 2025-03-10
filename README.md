@@ -73,6 +73,33 @@ This repository is a template using the custom Unicon CLI Tool. It provides a fo
    Afterwarts click on "Clusters" and select the cluster you want to use.
    Then select "venv" and click on the "default_python_venv" or select a custom one.
 
+## Modify Python venv and Databricks-Connect Version
+
+To modify the Python version of your virtual environment (venv) and update `databricks-connect` for a different Databricks cluster, follow these steps:
+
+0. Find the Required Python and Databricks-Connect Versions
+   Refer to the official documentation to identify the specific Python and `databricks-connect` versions required for each Databricks Runtime:  
+   - Databricks Runtime Release Notes: https://docs.databricks.com/aws/en/release-notes/runtime/  
+   - Databricks Connect Release Notes: https://docs.databricks.com/aws/en/release-notes/dbconnect/
+
+1. Update the Dockerfile
+   Open `.devcontainer/Dockerfile` and modify the Python version for the Docker container. For example, change the line:  
+   FROM python:3.12  
+   to  
+   FROM python:3.10
+
+2. Modify the Python Version for the Virtual Environment
+   Update the command for creating the venv. Change the line in `.devcontainer/Dockerfile`:  
+   RUN uv venv --python '>=3.12' ...  
+   to  
+   RUN uv venv --python '==3.10' ...
+
+3. Update the `databricks-connect` Version
+   In `.devcontainer/requirements.txt`, modify the `databricks-connect` version. Change the version to match the one required for your selected runtime, for example:  
+   databricks-connect==13.3.5
+
+4. Rebuild the Container
+   After modifying the Dockerfile and requirements, rebuild the container to apply the changes. You can then select the new cluster to use with your updated Python environment and Databricks Connect version.
 
 ## Incorporate Changes from the Template
 
