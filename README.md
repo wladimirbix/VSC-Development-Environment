@@ -15,47 +15,47 @@ This repository is a template using the custom Unicon CLI Tool. It provides a fo
 4. Create your own repository using the template  
    Go to GitHub and click the "Use this template" button to create your own repository based on this template and clone it to a local folder afterwards.
 
-      # Cloning a GitHub Repository Using Visual Studio Code
+      ### Cloning a GitHub Repository Using Visual Studio Code
 
       Follow the steps below to clone a GitHub repository using Visual Studio Code (VS Code):
 
-      ## Prerequisites
+      #### Prerequisites
       - **Visual Studio Code** installed on your computer.
       - **Git** installed on your computer.
       - **GitHub Account** (optional, but needed if you're cloning private repositories).
 
-      ### Step 1: Open Visual Studio Code
+      #### Step 1: Open Visual Studio Code
       1. Launch **Visual Studio Code**.
 
-      ### Step 2: Open the Command Palette
+      #### Step 2: Open the Command Palette
       1. Press `Ctrl + Shift + P` (or `Cmd + Shift + P` on macOS) to open the **Command Palette**.
 
-      ### Step 3: Clone the Repository
+      #### Step 3: Clone the Repository
       1. In the Command Palette, type **Git: Clone** and select it from the list of options.
       2. Alternatively, click on the **Source Control** icon on the left sidebar and then select **Clone Repository**.
 
-      ### Step 4: Provide the Repository URL
+      #### Step 4: Provide the Repository URL
       1. You will be prompted to enter the **repository URL**.
          - Go to the GitHub repository page in your browser.
          - Click on the **Code** button and copy the URL (HTTPS or SSH).
          - Paste the URL into VS Code when prompted.
 
-      ### Step 5: Choose a Folder for the Clone
+      #### Step 5: Choose a Folder for the Clone
       1. After pasting the URL, you will be prompted to choose a local folder where you want to clone the repository.
       2. Select or create a folder on your computer to store the repository.
 
-      ### Step 6: Open the Cloned Repository
+      #### Step 6: Open the Cloned Repository
       1. Once the repository is cloned, VS Code will ask if you want to open the cloned repository. Click **Open** to open the repository in VS Code.
 
-      ### Step 7: Verify the Cloning Process
+      #### Step 7: Verify the Cloning Process
       1. Check the **Explorer** pane in VS Code to see if the repository files are listed.
       2. You should now be able to make changes, commit, and push updates to the cloned repository using VS Code's built-in Git features.
 
 
-      ### Additional Notes:
+      #### Additional Notes:
       - If you encounter any authentication prompts, use your **GitHub credentials** or an **SSH key** (for private repositories).
       - To push changes, use the **Source Control** tab in VS Code or run Git commands from the integrated terminal.
-      
+
       That's it! You have successfully cloned a GitHub repository using Visual Studio Code.
 
 
