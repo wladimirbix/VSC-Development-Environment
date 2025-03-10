@@ -13,9 +13,23 @@ This repository is a template using the custom Unicon CLI Tool. It provides a fo
     - Dev Containers
 
 4. Create your own repository using the template  
-   Go to GitHub and click the "Use this template" button to create your own repository based on this template and clone it to a local folder afterwards.
+   Go to GitHub and click the "Use this template" button to create your own repository based on this template and clone it to a local folder afterwards (detailed instructions below).
 
-      ### Cloning a GitHub Repository Using Visual Studio Code
+5. Start Docker Desktop  
+   Make sure Docker Desktop is installed and running on your computer.
+
+6. Build and open the program in the Docker container  
+   Open Visual Studio Code and press Ctrl + Shift + P to open the command palette. Search for the command "Dev Containers: Rebuild and Reopen in Container" and select it.
+
+7. Create a profile  
+   Once the container is built, open a new terminal (by clicking the "+" icon on the right of the console or by pressing "Ctrl + Shift + ö") and type `unicon` in the console and follow the instructions to create a profile.
+
+8. Log into a Databricks profile  
+   To log into a Databricks profile, click on the Databricks extension icon on the left side of Visual Studio Code and select "Log in". Then choose the profile you want to log in with.
+   Afterwarts click on "Clusters" and select the cluster you want to use.
+   Then select "venv" and click on the "default_python_venv" or select a custom one.
+
+### Cloning a GitHub Repository Using Visual Studio Code
 
       Follow the steps below to clone a GitHub repository using Visual Studio Code (VS Code):
 
@@ -57,21 +71,6 @@ This repository is a template using the custom Unicon CLI Tool. It provides a fo
       - To push changes, use the **Source Control** tab in VS Code or run Git commands from the integrated terminal.
 
       That's it! You have successfully cloned a GitHub repository using Visual Studio Code.
-
-
-5. Start Docker Desktop  
-   Make sure Docker Desktop is installed and running on your computer.
-
-6. Build and open the program in the Docker container  
-   Open Visual Studio Code and press Ctrl + Shift + P to open the command palette. Search for the command "Dev Containers: Rebuild and Reopen in Container" and select it.
-
-7. Create a profile  
-   Once the container is built, open a new terminal (by clicking the "+" icon on the right of the console or by pressing "Ctrl + Shift + ö") and type `unicon` in the console and follow the instructions to create a profile.
-
-8. Log into a Databricks profile  
-   To log into a Databricks profile, click on the Databricks extension icon on the left side of Visual Studio Code and select "Log in". Then choose the profile you want to log in with.
-   Afterwarts click on "Clusters" and select the cluster you want to use.
-   Then select "venv" and click on the "default_python_venv" or select a custom one.
 
 ## Modify Python venv and Databricks-Connect Version
 
