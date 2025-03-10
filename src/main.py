@@ -13,7 +13,7 @@ person = {"name": "John", "age": 30, "city": "New York"}
 
 
 # Funktion
-def greet(name):
+def greet(name) -> str:
     return f"Hello, {name}!"
 
 

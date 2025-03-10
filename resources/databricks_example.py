@@ -1,4 +1,3 @@
-import json
 from databricks.sdk import WorkspaceClient
 
 # Initialisiere den Databricks-Client (nutzt automatisch die Databricks-Extension für VS Code)
