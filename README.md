@@ -52,11 +52,11 @@ This repository is a template using the custom Unicon CLI Tool. It provides a fo
       2. You should now be able to make changes, commit, and push updates to the cloned repository using VS Code's built-in Git features.
 
 
-        ### Additional Notes:
-        - If you encounter any authentication prompts, use your **GitHub credentials** or an **SSH key** (for private repositories).
-        - To push changes, use the **Source Control** tab in VS Code or run Git commands from the integrated terminal.
-
-        That's it! You have successfully cloned a GitHub repository using Visual Studio Code.
+      ### Additional Notes:
+      - If you encounter any authentication prompts, use your **GitHub credentials** or an **SSH key** (for private repositories).
+      - To push changes, use the **Source Control** tab in VS Code or run Git commands from the integrated terminal.
+      
+      That's it! You have successfully cloned a GitHub repository using Visual Studio Code.
 
 
 5. Start Docker Desktop  
