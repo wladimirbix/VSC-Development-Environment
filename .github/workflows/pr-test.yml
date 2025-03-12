@@ -13,21 +13,18 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'  # Specify your desired Python version
+
     - name: Install uv
       run: |
         python -m pip install --upgrade pip
         pip install uv
 
-    - name: Set up Python and create virtual environment
-      run: |
-        uv python install
-        echo "VIRTUAL_ENV=$(pwd)/.venv" >> $GITHUB_ENV
-        echo "PATH=$(pwd)/.venv/bin:$PATH" >> $GITHUB_ENV
-
-    - name: Install dependencies
+    - name: Install dependencies globally
       run: uv pip install -r .devcontainer/requirements.txt
 
     - name: Run tests
-      run: |
-        source .venv/bin/activate
-        pytest
+      run: pytest
