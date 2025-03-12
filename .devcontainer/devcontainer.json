@@ -21,7 +21,7 @@
                 "charliermarsh.ruff"
             ],
             "settings": {
-                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.defaultInterpreterPath": "/default_python_venv/bin/python",
                 "python.terminal.activateEnvironment": false,
                 "python.pythonPath": "/usr/local/bin/python",
                 "python.languageServer": "Pylance",
@@ -35,6 +35,7 @@
         }
     },
     
-    "postStartCommand": "python /project/unicon/config_builder.py"
+    "postStartCommand": ". /default_python_venv/bin/activate && python /project/unicon/config_builder.py && echo '. /default_python_venv/bin/activate' >> ~/.bashrc"
+
 
 }

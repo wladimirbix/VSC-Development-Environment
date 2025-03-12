@@ -1,4 +1,4 @@
-FROM python:3.12
+FROM python:latest
 
 # Install necessary packages
 RUN curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
@@ -20,8 +20,9 @@ RUN uv venv --python '>=3.12' /default_python_venv && \
     uv pip install -r requirements.txt
 
 # Ensure the virtual environment is used and recognized by Databricks/VSCode
-ENV PATH="/default_python_venv/bin:$PATH"
 ENV VIRTUAL_ENV="/default_python_venv"
+ENV PATH="/default_python_venv/bin:$PATH"
+
 
 # Copy the project files
 WORKDIR /project
