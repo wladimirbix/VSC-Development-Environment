@@ -3,7 +3,7 @@ ruff
 pytest
 iniconfig
 pluggy
-databricks-connect # ==13.3.5
+databricks-connect
 pandas
 dbt-core
 dbt-databricks
