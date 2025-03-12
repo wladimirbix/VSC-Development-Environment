@@ -1,6 +1,7 @@
 pip
 ruff
 pytest
+pluggy
 databricks-connect # ==13.3.5
 pandas
 dbt-core
