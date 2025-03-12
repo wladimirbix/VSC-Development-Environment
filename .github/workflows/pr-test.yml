@@ -11,16 +11,18 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        version: "0.6.6"  # Replace with your desired uv version
 
     - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.12'
+      run: uv python install
 
-    - name: Install dependencies
-      run: |
-        uv pip install -r .devcontainer/requirements.txt
+    - name: Install dependencies with uv
+      run: uv pip install -r .devcontainer/requirements.txt
 
     - name: Run tests
       run: |
