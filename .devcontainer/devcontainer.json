@@ -35,8 +35,8 @@
             }
         }
     },
-    "postCreateCommand": "chmod +x hooks/pre-push && git config --get core.hooksPath ../workspaces/VSC-Development-Environment/hooks",
-    "postStartCommand": ". /default_python_venv/bin/activate && python /project/unicon/config_builder.py && echo '. /default_python_venv/bin/activate' >> ~/.bashrc"
+    "postCreateCommand": "",
+    "postStartCommand": ". /default_python_venv/bin/activate && python /project/unicon/config_builder.py && echo '. /default_python_venv/bin/activate' >> ~/.bashrc && chmod +x hooks/pre-push && git config --get core.hooksPath /hooks"
 
 
 }
