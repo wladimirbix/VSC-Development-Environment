@@ -1,8 +1,8 @@
 import sys
-from databricks_functions import databricks_cli
+
 from azure_cli_functions import azure_cli
+from databricks_functions import databricks_cli
 from git_functions import git_cli
-from config_builder import build_all_configs  # Import the function
 
 
 def prompt_for_action():

@@ -1,6 +1,7 @@
-from config_manager import load_profiles, save_profiles
-from config_builder import build_databricks_config  # Neu: zum automatischen Aktualisieren der Konfigs
 import subprocess
+
+from config_builder import build_databricks_config  # Neu: zum automatischen Aktualisieren der Konfigs
+from config_manager import load_profiles, save_profiles
 
 
 def test_databricks_connection():

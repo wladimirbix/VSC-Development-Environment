@@ -1,6 +1,7 @@
-from config_manager import load_profiles, save_profiles
-from config_builder import build_git_config  # Neu: zum automatischen Aktualisieren der Konfiguration
 import subprocess
+
+from config_builder import build_git_config  # Neu: zum automatischen Aktualisieren der Konfiguration
+from config_manager import load_profiles, save_profiles
 
 
 def test_git_connection():

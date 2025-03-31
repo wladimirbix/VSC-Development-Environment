@@ -1,6 +1,7 @@
-from config_manager import load_profiles, save_profiles
-from config_builder import build_azure_config  # Neu: für automatischen Build der Konfiguration
 import subprocess
+
+from config_builder import build_azure_config  # Neu: für automatischen Build der Konfiguration
+from config_manager import load_profiles, save_profiles
 
 
 def test_azure_connection():

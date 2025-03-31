@@ -1,5 +1,6 @@
 import pytest
 
+
 # Test if True is True
 def test_boolean():
     assert True is True

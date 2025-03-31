@@ -1,5 +1,5 @@
-import os
 import json
+import os
 from typing import Dict
 
 
@@ -14,7 +14,7 @@ def load_profiles(profile_type: str) -> Dict[str, Dict[str, str]]:
     """Loads profiles from the specified profile type configuration file."""
     config_path = get_config_file_path(profile_type)
     if os.path.exists(config_path):
-        with open(config_path, "r", encoding="utf-8") as file:
+        with open(config_path, encoding="utf-8") as file:
             return json.load(file)
     return {}
 

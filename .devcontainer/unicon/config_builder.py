@@ -1,5 +1,5 @@
-import os
 import json
+import os
 
 # Define paths for configuration directory and files
 CONFIG_DIR = os.path.join(os.path.dirname(__file__), "config")
@@ -19,7 +19,7 @@ def build_azure_config():
         print(f"Azure profiles JSON not found: {AZURE_JSON}")
         return
 
-    with open(AZURE_JSON, "r") as file:
+    with open(AZURE_JSON) as file:
         profiles = json.load(file)
 
     # Create output directory if it doesn't exist
@@ -41,7 +41,7 @@ def build_databricks_config():
         print(f"Databricks profiles JSON not found: {DATABRICKS_JSON}")
         return
 
-    with open(DATABRICKS_JSON, "r") as file:
+    with open(DATABRICKS_JSON) as file:
         profiles = json.load(file)
 
     # Create output directory if it doesn't exist
@@ -63,7 +63,7 @@ def build_git_config():
         print(f"Git profiles JSON not found: {GIT_JSON}")
         return
 
-    with open(GIT_JSON, "r") as file:
+    with open(GIT_JSON) as file:
         profiles = json.load(file)
 
     # Create output directory if it doesn't exist
