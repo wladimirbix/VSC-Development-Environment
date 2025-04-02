@@ -13,7 +13,8 @@ person = {"name": "John", "age": 30, "city": "New York"}
 
 
 # Funktion
-def greet(name) -> str:
+def greet(name: str) -> str:
+    """Creates the function to Greet the user."""
     return f"Hello, {name}!"
 
 

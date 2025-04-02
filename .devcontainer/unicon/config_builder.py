@@ -13,7 +13,7 @@ DATABRICKS_CFG = os.path.expanduser("~/.databrickscfg")
 GIT_CFG = os.path.expanduser("~/.gitconfig")
 
 
-def build_azure_config():
+def build_azure_config() -> None:
     """Builds the Azure configuration file from the JSON profiles."""
     if not os.path.exists(AZURE_JSON):
         print(f"Azure profiles JSON not found: {AZURE_JSON}")
@@ -35,7 +35,7 @@ def build_azure_config():
     print(f"Azure configuration file created at {AZURE_CFG}")
 
 
-def build_databricks_config():
+def build_databricks_config() -> None:
     """Builds the Databricks configuration file from the JSON profiles."""
     if not os.path.exists(DATABRICKS_JSON):
         print(f"Databricks profiles JSON not found: {DATABRICKS_JSON}")
@@ -57,7 +57,7 @@ def build_databricks_config():
     print(f"Databricks configuration file created at {DATABRICKS_CFG}")
 
 
-def build_git_config():
+def build_git_config() -> None:
     """Builds the Git configuration file from the JSON profiles."""
     if not os.path.exists(GIT_JSON):
         print(f"Git profiles JSON not found: {GIT_JSON}")
@@ -79,7 +79,7 @@ def build_git_config():
     print(f"Git configuration file created at {GIT_CFG}")
 
 
-def build_all_configs():
+def build_all_configs() -> None:
     """Builds all configuration files for Azure, Databricks, and Git."""
     build_azure_config()
     build_databricks_config()

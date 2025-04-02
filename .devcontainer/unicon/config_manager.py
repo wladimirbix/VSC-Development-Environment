@@ -1,6 +1,5 @@
 import json
 import os
-from typing import Dict
 
 
 def get_config_file_path(profile_type: str) -> str:
@@ -10,7 +9,7 @@ def get_config_file_path(profile_type: str) -> str:
     return os.path.join(config_dir, f"{profile_type}_profiles.json")
 
 
-def load_profiles(profile_type: str) -> Dict[str, Dict[str, str]]:
+def load_profiles(profile_type: str) -> dict[str, dict[str, str]]:
     """Loads profiles from the specified profile type configuration file."""
     config_path = get_config_file_path(profile_type)
     if os.path.exists(config_path):
@@ -19,7 +18,7 @@ def load_profiles(profile_type: str) -> Dict[str, Dict[str, str]]:
     return {}
 
 
-def save_profiles(profile_type: str, profiles: Dict[str, Dict[str, str]]) -> None:
+def save_profiles(profile_type: str, profiles: dict[str, dict[str, str]]) -> None:
     """Saves profiles to the specified profile type configuration file."""
     config_path = get_config_file_path(profile_type)
     with open(config_path, "w", encoding="utf-8") as file:

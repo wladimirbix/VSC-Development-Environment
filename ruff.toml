@@ -31,6 +31,18 @@ select = [
     "G"
 ]
 
+# Ignore specific rules
+ignore = [
+    # undocumented-public-module
+    "D100", 
+    # non-imperative-mood
+    "D401",
+    # subprocess-popen-with-shell-equals-true
+    "S602",
+    # start-process-with-partial-path
+    "S607"
+]
+
 # Select the maximum number of characters within a line
 line-length = 120
 
