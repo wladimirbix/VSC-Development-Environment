@@ -7,3 +7,4 @@ databricks-connect
 pandas
 dbt-core
 dbt-databricks
+dos2unix

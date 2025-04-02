@@ -40,7 +40,9 @@ ignore = [
     # subprocess-popen-with-shell-equals-true
     "S602",
     # start-process-with-partial-path
-    "S607"
+    "S607",
+    # IO-Error
+    "E902"
 ]
 
 # Select the maximum number of characters within a line
