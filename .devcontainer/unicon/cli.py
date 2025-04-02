@@ -1,11 +1,11 @@
 import sys
-from databricks_functions import databricks_cli
+
 from azure_cli_functions import azure_cli
+from databricks_functions import databricks_cli
 from git_functions import git_cli
-from config_builder import build_all_configs  # Import the function
 
 
-def prompt_for_action():
+def prompt_for_action() -> None:
     """Prompts the user to select a platform and action."""
     print("Welcome to Unicon CLI!")
 
@@ -27,7 +27,8 @@ def prompt_for_action():
             if platform == "databricks":
                 action = (
                     input(
-                        "Choose action (create_profile, update_profile, delete_profile, list_profiles, set_default_profile) or type 'back' to go back: "
+                        "Choose action (create_profile, update_profile, delete_profile, +"
+                        "list_profiles, set_default_profile) or type 'back' to go back: "
                     )
                     .strip()
                     .lower()
@@ -43,7 +44,8 @@ def prompt_for_action():
                     "set_default_profile",
                 ]:
                     print(
-                        "Invalid action. Please choose from: create_profile, update_profile, delete_profile, list_profiles, set_default_profile."
+                        "Invalid action. Please choose from: create_profile, update_profile, delete_profile, +"
+                        "list_profiles, set_default_profile."
                     )
                 else:
                     databricks_cli(action)
@@ -55,7 +57,8 @@ def prompt_for_action():
             elif platform == "azure":
                 action = (
                     input(
-                        "Choose action (create_profile, update_profile, delete_profile, list_profiles) or type 'back' to go back: "
+                        "Choose action (create_profile, update_profile, delete_profile, list_profiles) +"
+                        "or type 'back' to go back: "
                     )
                     .strip()
                     .lower()
@@ -70,7 +73,8 @@ def prompt_for_action():
                     "list_profiles",
                 ]:
                     print(
-                        "Invalid action. Please choose from: create_profile, update_profile, delete_profile, list_profiles."
+                        "Invalid action. Please choose from: create_profile, update_profile, +"
+                        "delete_profile, list_profiles."
                     )
                 else:
                     azure_cli(action)
@@ -82,7 +86,8 @@ def prompt_for_action():
             elif platform == "git":
                 action = (
                     input(
-                        "Choose action (create_profile, update_profile, delete_profile, list_profiles) or type 'back' to go back: "
+                        "Choose action (create_profile, update_profile, delete_profile, list_profiles) +"
+                        "or type 'back' to go back: "
                     )
                     .strip()
                     .lower()
@@ -97,7 +102,8 @@ def prompt_for_action():
                     "list_profiles",
                 ]:
                     print(
-                        "Invalid action. Please choose from: create_profile, update_profile, delete_profile, list_profiles."
+                        "Invalid action. Please choose from: create_profile, update_profile, +"
+                        "delete_profile, list_profiles."
                     )
                 else:
                     git_cli(action)

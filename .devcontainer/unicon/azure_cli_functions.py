@@ -1,27 +1,34 @@
-from config_manager import load_profiles, save_profiles
-from config_builder import build_azure_config  # Neu: für automatischen Build der Konfiguration
 import subprocess
+from typing import Optional
+
+from config_builder import build_azure_config  # Neu: für automatischen Build der Konfiguration
+from config_manager import load_profiles, save_profiles
 
 
-def test_azure_connection():
-    """Führt den Befehl 'az account list' direkt in der Konsole aus."""
+def test_azure_connection() -> None:
+    """Runs the command 'az account list' directly in the console."""
     subprocess.run("az account list", shell=True, check=True)
 
 
-def create_profile(profile_name, subscription_id, tenant_id):
-    """Erstellt ein Azure-Profil in der JSON-Datei."""
+def create_profile(profile_name: str, subscription_id: str, tenant_id: str) -> None:
+    """Creates an Azure profile in the JSON file."""
     profiles = load_profiles("azure")
     if profile_name in profiles:
         print(f"Profile '{profile_name}' already exists.")
         return
     profiles[profile_name] = {"subscription_id": subscription_id, "tenant_id": tenant_id}
     save_profiles("azure", profiles)
-    build_azure_config()  # Konfigurationen aktualisieren
+    build_azure_config()  # Update configurations
     print(f"Profile '{profile_name}' created successfully.")
 
 
-def update_profile(profile_name, new_name=None, subscription_id=None, tenant_id=None):
-    """Aktualisiert ein vorhandenes Azure-Profil in der JSON-Datei."""
+def update_profile(
+    profile_name: str,
+    new_name: Optional[str] = None,
+    subscription_id: Optional[str] = None,
+    tenant_id: Optional[str] = None,
+) -> None:
+    """Updates an existing Azure profile in the JSON file."""
     profiles = load_profiles("azure")
     if profile_name not in profiles:
         print(f"Profile '{profile_name}' not found.")
@@ -34,24 +41,24 @@ def update_profile(profile_name, new_name=None, subscription_id=None, tenant_id=
     if new_name:
         profiles[new_name] = profiles.pop(profile_name)
     save_profiles("azure", profiles)
-    build_azure_config()  # Konfigurationen aktualisieren
+    build_azure_config()  # Update configurations
     print(f"Profile '{profile_name}' updated successfully.")
 
 
-def delete_profile(profile_name):
-    """Löscht ein Azure-Profil aus der JSON-Datei."""
+def delete_profile(profile_name: str) -> None:
+    """Deletes an Azure profile from the JSON file."""
     profiles = load_profiles("azure")
     if profile_name not in profiles:
         print(f"Profile '{profile_name}' not found.")
         return
     del profiles[profile_name]
     save_profiles("azure", profiles)
-    build_azure_config()  # Konfigurationen aktualisieren
+    build_azure_config()  # Update configurations
     print(f"Profile '{profile_name}' deleted successfully.")
 
 
-def list_profiles():
-    """Listet alle Azure-Profile aus der JSON-Datei auf."""
+def list_profiles() -> None:
+    """Lists all Azure profiles from the JSON file."""
     profiles = load_profiles("azure")
     if profiles:
         for name, details in profiles.items():
@@ -60,8 +67,8 @@ def list_profiles():
         print("No Azure profiles found.")
 
 
-def azure_cli(action):
-    """Azure-spezifische CLI-Operationen."""
+def azure_cli(action: str) -> None:
+    """Handles Azure-specific CLI operations."""
     if action == "create_profile":
         profile_name = input("Enter profile name: ").strip()
         subscription_id = input(

@@ -18,7 +18,8 @@
                 "ms-python.python",
                 "mechatroner.rainbow-csv",
                 "mutantdino.resourcemonitor",
-                "charliermarsh.ruff"
+                "charliermarsh.ruff",
+                "GitHub.vscode-github-actions"
             ],
             "settings": {
                 "python.defaultInterpreterPath": "/default_python_venv/bin/python",
@@ -34,7 +35,7 @@
             }
         }
     },
-    
+    "postCreateCommand": "chmod +x hooks/pre-push && git config core.hooksPath ./hooks",
     "postStartCommand": ". /default_python_venv/bin/activate && python /project/unicon/config_builder.py && echo '. /default_python_venv/bin/activate' >> ~/.bashrc"
 
 
