@@ -2,7 +2,7 @@
 
 echo "Running pre-push hook..."
 
-# Run Ruff linter
+# Run Ruff linter 
 ruff check .
 if [ $? -ne 0 ]; then
     echo "Linter-Fehler gefunden! Push abgebrochen."
