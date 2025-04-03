@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Überprüfen, ob das Skript in Docker läuft
+# Überprüfen, ob das Skript in Docker läuft 
 if [ -f /.dockerenv ]; then
     echo "Running pre-push hook inside Docker..."
 
