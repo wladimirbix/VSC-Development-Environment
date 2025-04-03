@@ -5,4 +5,5 @@ databricks-connect
 pandas
 dbt-core
 dbt-databricks
+databricks-sdk[notebook]
 ipykernel
