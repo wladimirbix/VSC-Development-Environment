@@ -1,13 +1,19 @@
 #!/bin/bash
 
-echo "Running pre-push hook..."
+# Überprüfen, ob das Skript in Docker läuft
+if [ -f /.dockerenv ]; then
+    echo "Running pre-push hook inside Docker..."
 
-# Run Ruff linter 
-ruff check .
-if [ $? -ne 0 ]; then
-    echo "Linter-Fehler gefunden! Push abgebrochen."
-    exit 1
+    # Run Ruff linter
+    ruff check .
+    if [ $? -ne 0 ]; then
+        echo "Linter-Fehler gefunden! Push abgebrochen."
+        exit 1
+    fi
+
+    echo "Alles in Ordnung. Push wird durchgeführt."
+else
+    echo "Pre-Push Hook wird übersprungen (nicht in Docker-Umgebung)."
 fi
 
-echo "Alles in Ordnung. Push wird durchgeführt."
 exit 0
