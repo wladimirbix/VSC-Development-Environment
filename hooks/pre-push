@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Überprüfen, ob das Skript in Docker läuft 
+# Überprüfen, ob das Skript in Docker läuft
 if [ -f /.dockerenv ]; then
     echo "Running pre-push hook inside Docker..."
 
@@ -11,7 +11,34 @@ if [ -f /.dockerenv ]; then
         exit 1
     fi
 
-    echo "Alles in Ordnung. Push wird durchgeführt."
+    # Run Tests and Calculate Success Rate
+    echo "Running tests..."
+    total_tests=0
+    failed_tests=0
+
+    # Führe Tests aus und zähle Erfolge/Fehlschläge
+    pytest --maxfail=100 --tb=short | tee pytest_output.log
+    total_tests=$(grep -oP '(\d+) passed' pytest_output.log | awk '{sum+=$1} END {print sum}')
+    failed_tests=$(grep -oP '(\d+) failed' pytest_output.log | awk '{sum+=$1} END {print sum}')
+    
+    if [ -z "$total_tests" ]; then total_tests=0; fi
+    if [ -z "$failed_tests" ]; then failed_tests=0; fi
+
+    if [ $total_tests -eq 0 ]; then
+        echo "Keine Tests gefunden! Push abgebrochen."
+        exit 1
+    fi
+
+    success_rate=$(( (total_tests * 100) / (total_tests + failed_tests) ))
+
+    echo "Test Erfolgsrate: $success_rate%"
+
+    if [ $success_rate -lt 80 ]; then
+        echo "Weniger als 80% der Tests erfolgreich! Push abgebrochen."
+        exit 1
+    fi
+
+    echo "Tests bestanden! Push wird durchgeführt."
 else
     echo "Pre-Push Hook wird übersprungen (nicht in Docker-Umgebung)."
 fi
