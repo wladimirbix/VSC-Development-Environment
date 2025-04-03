@@ -1,10 +1,8 @@
 pip
 ruff
 pytest
-iniconfig
-pluggy
 databricks-connect
 pandas
 dbt-core
 dbt-databricks
-dos2unix
+ipykernel
