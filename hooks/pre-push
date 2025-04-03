@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Variable to enable/disable pre-push hook
+use_pre_push=true
+
+# Check if the pre-push hook should be run
+if [ "$use_pre_push" = false ]; then
+    echo "Pre-push hook is disabled. Skipping..."
+    exit 0
+fi
+
 # Überprüfen, ob das Skript in Docker läuft
 if [ -f /.dockerenv ]; then
     echo "Running pre-push hook inside Docker..."
