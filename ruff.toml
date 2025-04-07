@@ -35,7 +35,7 @@ select = [
 ignore = [
     # undocumented-public-module
     "D100", 
-    # non-imperative-mood
+    # non-imperative-mood-in-Docstrings
     "D401",
     # subprocess-popen-with-shell-equals-true
     "S602",
