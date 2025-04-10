@@ -1,9 +1,10 @@
 pip
 ruff
 pytest
-databricks-connect == 13.3
+databricks-connect
 pandas
 dbt-core
 dbt-databricks
 databricks-sdk[notebook]
 ipykernel
+nbformat
