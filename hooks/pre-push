@@ -70,7 +70,7 @@ if [ -f /.dockerenv ]; then
         exit 1
     fi
 
-    # Ausgabe eines finalen Status am Ende aller Tests
+    # Ausgabe eines finalen Status am Ende aller Tests 
     echo "-------------------------------------"
     echo -e "Finaler Teststatus:"
     if [ $success_rate -ge $min_success_rate ]; then
