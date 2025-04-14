@@ -21,6 +21,17 @@ fi
 if [ -f /.dockerenv ]; then
     echo "Running pre-push hook inside Docker..."
 
+    # Entferne Outputs aus allen Jupyter Notebooks
+    echo "Entferne Outputs aus .ipynb-Dateien mit nbstripout..."
+    if command -v nbstripout &> /dev/null; then
+        find . -name "*.ipynb" -not -path "./.venv/*" -exec nbstripout {} \;
+        echo -e "${GREEN}Notebook-Outputs wurden entfernt.${NC}"
+    else
+        echo -e "${RED}nbstripout ist nicht installiert! Bitte mit 'pip install nbstripout' nachinstallieren.${NC}"
+        exit 1
+    fi
+
+
     # Run Ruff linter
     ruff check .
     if [ $? -ne 0 ]; then
