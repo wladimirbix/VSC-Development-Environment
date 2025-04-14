@@ -31,8 +31,8 @@ lint.select = [
     "G"
 ]
 
-lint.exclude = [
-    ".ipynb"
+exclude = [
+    "*.ipynb"
 ]
 
 # Ignore specific rules
