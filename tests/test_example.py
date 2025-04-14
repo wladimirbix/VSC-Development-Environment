@@ -5,7 +5,7 @@ import pytest
 # @pytest.mark.high_priority
 def test_boolean() -> None:
     """Test to check if True is True."""
-    if True is not False:
+    if True is not True:
         raise ValueError("True is not True")
 
 
