@@ -50,7 +50,7 @@ if [ -f /.dockerenv ]; then
         exit 1
     fi
 
-    # Run High Priority tests separately using the pytest marker "high_priority"
+    # Run High Priority tests separately using the pytest marker "high_priority" 
     echo "Now Running High Priority tests..."
     pytest -m high_priority --maxfail=1 --tb=short
     hp_exit=$?
