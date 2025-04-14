@@ -1,11 +1,16 @@
+import pytest
+
+
 # Test if True is True
+# @pytest.mark.high_priority
 def test_boolean() -> None:
     """Test to check if True is True."""
-    if True is not True:
+    if True is not False:
         raise ValueError("True is not True")
 
 
 # Test if 3 is equal to 3
+@pytest.mark.high_priority
 def test_equality() -> None:
     """Test to check if 3 is equal to 3."""
     if 3 != 3:
@@ -13,6 +18,7 @@ def test_equality() -> None:
 
 
 # Test if a string is the same as another string
+@pytest.mark.high_priority
 def test_string_comparison() -> None:
     """Test to check if a string is the same as another string."""
     if "hello" != "hello":
@@ -51,7 +57,7 @@ def test_function() -> None:
 def test_exception() -> None:
     """Test to check if a ZeroDivisionError is raised."""
     try:
-        _ = 1 / 0  # Assigning the result to a variable
+        _ = 1 / 0  # Zuweisung des Ergebnisses
     except ZeroDivisionError:
         pass
     else:

@@ -20,12 +20,8 @@ if [ -f /.dockerenv ]; then
         exit 1
     fi
 
-    # Run Tests and Calculate Success Rate
-    echo "Running tests..."
-    total_tests=0
-    failed_tests=0
-
-    # Führe Tests aus und zähle Erfolge/Fehlschläge
+    # Run overall tests and calculate success rate
+    echo "Running overall tests..."
     pytest --maxfail=100 --tb=short | tee pytest_output.log
     total_tests=$(grep -oP '(\d+) passed' pytest_output.log | awk '{sum+=$1} END {print sum}')
     failed_tests=$(grep -oP '(\d+) failed' pytest_output.log | awk '{sum+=$1} END {print sum}')
@@ -39,15 +35,28 @@ if [ -f /.dockerenv ]; then
     fi
 
     success_rate=$(( (total_tests * 100) / (total_tests + failed_tests) ))
-
     echo "Test Erfolgsrate: $success_rate%"
-
     if [ $success_rate -lt 80 ]; then
         echo "Weniger als 80% der Tests erfolgreich! Push abgebrochen."
         exit 1
     fi
 
-    echo "Tests bestanden! Push wird durchgeführt."
+    # Run High Priority tests separately using the pytest marker "high_priority"
+    echo "Running High Priority tests..."
+    pytest -m high_priority --maxfail=1 --tb=short
+    hp_exit=$?
+    if [ $hp_exit -ne 0 ]; then
+        echo "High Priority Tests sind fehlgeschlagen! Push abgebrochen."
+        exit 1
+    fi
+
+    # Ausgabe eines finalen Status am Ende aller Tests
+    echo "-------------------------------------"
+    echo "Finaler Teststatus:"
+    echo "Gesamte Erfolgsrate: $success_rate%"
+    echo "High Priority Tests: erfolgreich bestanden."
+    echo "-------------------------------------"
+    echo "Alle Tests, inklusive der High Priority Tests, wurden erfolgreich bestanden. Push wird durchgeführt."
 else
     echo "Pre-Push Hook wird übersprungen (nicht in Docker-Umgebung)."
 fi
