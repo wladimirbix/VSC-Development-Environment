@@ -1,11 +1,19 @@
 #!/bin/bash
 
+# Farben definieren
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
 # Variable to enable/disable pre-push hook
 use_pre_push=true
 
+# Mindestanforderung für Erfolgsquote
+min_success_rate=80
+
 # Check if the pre-push hook should be run
 if [ "$use_pre_push" = false ]; then
-    echo "Pre-push hook is disabled. Skipping..."
+    echo -e "${YELLOW}Pre-push hook is disabled. Skipping...${NC}"
     exit 0
 fi
 
@@ -16,12 +24,12 @@ if [ -f /.dockerenv ]; then
     # Run Ruff linter
     ruff check .
     if [ $? -ne 0 ]; then
-        echo "Linter-Fehler gefunden! Push abgebrochen."
+        echo -e "${RED}Linter-Fehler gefunden! Push abgebrochen.${NC}"
         exit 1
     fi
 
     # Run overall tests and calculate success rate
-    echo "Running overall tests..."
+    echo "Running defined tests..."
     pytest --maxfail=100 --tb=short | tee pytest_output.log
     total_tests=$(grep -oP '(\d+) passed' pytest_output.log | awk '{sum+=$1} END {print sum}')
     failed_tests=$(grep -oP '(\d+) failed' pytest_output.log | awk '{sum+=$1} END {print sum}')
@@ -30,35 +38,46 @@ if [ -f /.dockerenv ]; then
     if [ -z "$failed_tests" ]; then failed_tests=0; fi
 
     if [ $total_tests -eq 0 ]; then
-        echo "Keine Tests gefunden! Push abgebrochen."
+        echo -e "${RED}Keine Tests gefunden! Push abgebrochen.${NC}"
         exit 1
     fi
 
     success_rate=$(( (total_tests * 100) / (total_tests + failed_tests) ))
     echo "Test Erfolgsrate: $success_rate%"
-    if [ $success_rate -lt 80 ]; then
-        echo "Weniger als 80% der Tests erfolgreich! Push abgebrochen."
+
+    if [ $success_rate -lt $min_success_rate ]; then
+        echo -e "${RED}Weniger als ${min_success_rate}% der Tests erfolgreich! Push abgebrochen.${NC}"
         exit 1
     fi
 
     # Run High Priority tests separately using the pytest marker "high_priority"
-    echo "Running High Priority tests..."
+    echo "Now Running High Priority tests..."
     pytest -m high_priority --maxfail=1 --tb=short
     hp_exit=$?
     if [ $hp_exit -ne 0 ]; then
-        echo "High Priority Tests sind fehlgeschlagen! Push abgebrochen."
+        echo -e "${RED}High Priority Tests sind fehlgeschlagen! Push abgebrochen.${NC}"
         exit 1
     fi
 
     # Ausgabe eines finalen Status am Ende aller Tests
     echo "-------------------------------------"
-    echo "Finaler Teststatus:"
-    echo "Gesamte Erfolgsrate: $success_rate%"
-    echo "High Priority Tests: erfolgreich bestanden."
+    echo -e "Finaler Teststatus:"
+    if [ $success_rate -ge $min_success_rate ]; then
+        echo -e "✅ Gesamte Erfolgsrate: ${GREEN}$success_rate%${NC} (benötigt mindestens ${min_success_rate}%)"
+    else
+        echo -e "❌ Gesamte Erfolgsrate: ${RED}$success_rate%${NC} (benötigt mindestens ${min_success_rate}%)"
+    fi
+
+    if [ $hp_exit -eq 0 ]; then
+        echo -e "✅ High Priority Tests: ${GREEN}erfolgreich bestanden.${NC}"
+    else
+        echo -e "❌ High Priority Tests: ${RED}fehlgeschlagen.${NC}"
+    fi
     echo "-------------------------------------"
-    echo "Alle Tests, inklusive der High Priority Tests, wurden erfolgreich bestanden. Push wird durchgeführt."
+    echo -e "${GREEN}Benötigte mindestanzahl an Tests, inklusive der High Priority Tests, wurden erfolgreich bestanden. Push wird durchgeführt.${NC}"
+
 else
-    echo "Pre-Push Hook wird übersprungen (nicht in Docker-Umgebung)."
+    echo -e "${YELLOW}Pre-Push Hook wird übersprungen (nicht in Docker-Umgebung).${NC}"
 fi
 
 exit 0
