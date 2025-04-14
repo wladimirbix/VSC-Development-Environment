@@ -31,6 +31,10 @@ lint.select = [
     "G"
 ]
 
+lint.exclude = [
+    ".ipynb"
+]
+
 # Ignore specific rules
 lint.ignore = [
     # undocumented-public-module

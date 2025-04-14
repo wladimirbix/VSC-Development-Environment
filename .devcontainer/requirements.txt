@@ -8,3 +8,4 @@ dbt-databricks
 databricks-sdk[notebook]
 ipykernel
 nbformat
+nbstripout
