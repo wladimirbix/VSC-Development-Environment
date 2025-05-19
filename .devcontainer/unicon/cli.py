@@ -27,7 +27,7 @@ def prompt_for_action() -> None:
             if platform == "databricks":
                 action = (
                     input(
-                        "Choose action (create_profile, update_profile, delete_profile, +"
+                        "Choose action (create_profile, update_profile, delete_profile, "
                         "list_profiles, set_default_profile) or type 'back' to go back: "
                     )
                     .strip()
@@ -44,7 +44,7 @@ def prompt_for_action() -> None:
                     "set_default_profile",
                 ]:
                     print(
-                        "Invalid action. Please choose from: create_profile, update_profile, delete_profile, +"
+                        "Invalid action. Please choose from: create_profile, update_profile, delete_profile, "
                         "list_profiles, set_default_profile."
                     )
                 else:
@@ -57,7 +57,7 @@ def prompt_for_action() -> None:
             elif platform == "azure":
                 action = (
                     input(
-                        "Choose action (create_profile, update_profile, delete_profile, list_profiles) +"
+                        "Choose action (create_profile, update_profile, delete_profile, list_profiles) "
                         "or type 'back' to go back: "
                     )
                     .strip()
@@ -73,7 +73,7 @@ def prompt_for_action() -> None:
                     "list_profiles",
                 ]:
                     print(
-                        "Invalid action. Please choose from: create_profile, update_profile, +"
+                        "Invalid action. Please choose from: create_profile, update_profile, "
                         "delete_profile, list_profiles."
                     )
                 else:
@@ -86,7 +86,7 @@ def prompt_for_action() -> None:
             elif platform == "git":
                 action = (
                     input(
-                        "Choose action (create_profile, update_profile, delete_profile, list_profiles) +"
+                        "Choose action (create_profile, update_profile, delete_profile, list_profiles) "
                         "or type 'back' to go back: "
                     )
                     .strip()
@@ -102,7 +102,7 @@ def prompt_for_action() -> None:
                     "list_profiles",
                 ]:
                     print(
-                        "Invalid action. Please choose from: create_profile, update_profile, +"
+                        "Invalid action. Please choose from: create_profile, update_profile, "
                         "delete_profile, list_profiles."
                     )
                 else:

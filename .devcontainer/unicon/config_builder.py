@@ -16,7 +16,7 @@ GIT_CFG = os.path.expanduser("~/.gitconfig")
 def build_azure_config() -> None:
     """Builds the Azure configuration file from the JSON profiles."""
     if not os.path.exists(AZURE_JSON):
-        print(f"Azure profiles JSON not found: {AZURE_JSON}")
+        print("❌ Azure profiles JSON not found.")
         return
 
     with open(AZURE_JSON) as file:
@@ -32,13 +32,13 @@ def build_azure_config() -> None:
             file.write(f"tenant_id = {profile_data['tenant_id']}\n")
             file.write("\n")
 
-    print(f"Azure configuration file created at {AZURE_CFG}")
+    print(f"✅ Azure configuration file created at {AZURE_CFG}")
 
 
 def build_databricks_config() -> None:
     """Builds the Databricks configuration file from the JSON profiles."""
     if not os.path.exists(DATABRICKS_JSON):
-        print(f"Databricks profiles JSON not found: {DATABRICKS_JSON}")
+        print("❌ Databricks profiles JSON not found.")
         return
 
     with open(DATABRICKS_JSON) as file:
@@ -54,13 +54,13 @@ def build_databricks_config() -> None:
             file.write(f"token = {profile_data['token']}\n")
             file.write("\n")
 
-    print(f"Databricks configuration file created at {DATABRICKS_CFG}")
+    print(f"✅ Databricks configuration file created at {DATABRICKS_CFG}")
 
 
 def build_git_config() -> None:
     """Builds the Git configuration file from the JSON profiles."""
     if not os.path.exists(GIT_JSON):
-        print(f"Git profiles JSON not found: {GIT_JSON}")
+        print("❌ Git profiles JSON not found.")
         return
 
     with open(GIT_JSON) as file:
@@ -76,14 +76,16 @@ def build_git_config() -> None:
             file.write(f"token = {profile_data['token']}\n")
             file.write("\n")
 
-    print(f"Git configuration file created at {GIT_CFG}")
+    print(f"✅ Git configuration file created at {GIT_CFG}")
 
 
 def build_all_configs() -> None:
     """Builds all configuration files for Azure, Databricks, and Git."""
+    print("-------------------------------------------------------------------")
     build_azure_config()
     build_databricks_config()
     build_git_config()
+    print("-------------------------------------------------------------------")
 
 
 if __name__ == "__main__":
